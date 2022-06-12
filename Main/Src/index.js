@@ -7,6 +7,9 @@ var request = require("request");
 const app = express();
 const port = process.env.PORT;
 
+var cors = require("cors");
+app.use(cors());
+
 app.get("/", (req, res) => {
   request(
     {
