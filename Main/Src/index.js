@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require("express");
 // var ParseHub = require("parsehub");
 // var api = new ParseHub(process.env.API_KEY);
@@ -10,7 +11,9 @@ const port = process.env.PORT;
 var cors = require("cors");
 app.use(cors());
 
-app.get("/", (req, res) => {
+app.use(express.static(path.join(__dirname, "/public")));
+
+app.get("/data", (req, res) => {
   request(
     {
       uri: `https://parsehub.com/api/v2/projects/${process.env.PROJECT_TOKEN}/last_ready_run/data`,

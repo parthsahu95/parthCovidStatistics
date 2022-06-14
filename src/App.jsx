@@ -11,7 +11,7 @@ function App() {
   let [covidData, setCovidData] = useState("");
   useEffect(() => {
     async function getData() {
-      const response = await axios.get("http://localhost:4242");
+      const response = await axios.get("http://localhost:4242/data");
       await setCovidData(response.data);
     }
     getData();
