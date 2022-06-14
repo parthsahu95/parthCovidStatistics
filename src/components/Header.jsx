@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 
 const pages = ["Home", "About"];
 
-const Header = () => {
+const Header = ({ setCurrentPage }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -76,7 +76,13 @@ const Header = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page}
+                  onClick={() => {
+                    handleCloseNavMenu();
+                    setCurrentPage(page);
+                  }}
+                >
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
               ))}
@@ -106,7 +112,10 @@ const Header = () => {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={handleCloseNavMenu}
+                onClick={() => {
+                  handleCloseNavMenu();
+                  setCurrentPage(page);
+                }}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
                 {page}

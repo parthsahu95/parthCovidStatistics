@@ -1,4 +1,4 @@
-const cacheName = "v2";
+const cacheName = "v1";
 
 // Call Install Event
 self.addEventListener("install", (e) => {
@@ -26,6 +26,9 @@ self.addEventListener("activate", (e) => {
 // Call Fetch Event
 self.addEventListener("fetch", (e) => {
   console.log("Service Worker: Fetching");
+  if (!e.request.url.startsWith("http")) {
+    return;
+  }
   e.respondWith(
     fetch(e.request)
       .then((res) => {

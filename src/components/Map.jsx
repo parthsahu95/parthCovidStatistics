@@ -7,8 +7,6 @@ import { Box } from "@mui/material";
 const Map = ({ covidData }) => {
   const [regionData, setRegionData] = useState([]);
 
-  console.log(covidData);
-
   useEffect(() => {
     const dataObj = {};
 
@@ -21,7 +19,6 @@ const Map = ({ covidData }) => {
     });
 
     setRegionData({ ...dataObj });
-    console.log(regionData);
   }, [covidData]);
 
   return (
