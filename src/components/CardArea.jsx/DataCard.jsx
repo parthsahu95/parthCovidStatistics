@@ -6,29 +6,22 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import axios from "axios";
 
-export default function DataCard({ heading, hdColor }) {
-  useEffect(() => {
-    async function getData() {
-      const response = await axios.get("http://localhost:4242");
-      console.log(response);
-    }
+export default function DataCard({ heading, hdColor, number }) {
+  const headingWords = heading.split(" ");
 
-    getData();
-  }, []);
   return (
     <Box sx={{ minWidth: 275 }}>
       <Card>
         <CardContent sx={{ textAlign: "center" }}>
           <Typography variant="h5" color={hdColor} gutterBottom>
-            {heading}
+            {headingWords[0]}
           </Typography>
 
-          <Typography sx={{ mb: 1.5 }} color="text.secondary">
-            (10.00%)
+          <Typography sx={{ mb: 1.5 }} color={hdColor}>
+            {headingWords[1]}
           </Typography>
-          <Typography variant="body2">Number of cases.</Typography>
+          <Typography>{number}</Typography>
         </CardContent>
         <CardActions>
           <Button size="small">Learn More</Button>

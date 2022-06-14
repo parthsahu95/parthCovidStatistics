@@ -1,0 +1,8 @@
+.svgParent {
+  position: relative;
+  width: 100%;
+}
+
+svg {
+  /* z-index: 10000; */
+}

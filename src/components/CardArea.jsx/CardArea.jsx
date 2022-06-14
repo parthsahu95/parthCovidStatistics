@@ -2,7 +2,12 @@ import { Divider, Stack, Box, Container } from "@mui/material";
 import React from "react";
 import DataCard from "./DataCard";
 
-const CardArea = () => {
+const CardArea = ({ covidData }) => {
+  const colors = ["primary", "green", "red"];
+  const cardData = (covidData.summary || []).map((data, i) => {
+    return { ...data, hdColor: colors[i] };
+  });
+
   return (
     <Container>
       <Box sx={{ px: 3, mb: 3 }}>
@@ -12,9 +17,17 @@ const CardArea = () => {
           spacing={{ xs: 1, sm: 2, md: 4 }}
           divider={<Divider orientation="vertical" flexItem />}
         >
-          <DataCard heading="Active" hdColor="primary" />
-          <DataCard heading="Recovered" hdColor="green" />
-          <DataCard heading="Deceased" hdColor="red" />
+          {cardData &&
+            cardData.map((data) => {
+              return (
+                <DataCard
+                  key={data.name}
+                  heading={data.name}
+                  hdColor={data.hdColor}
+                  number={data.people}
+                />
+              );
+            })}
         </Stack>
       </Box>
     </Container>
